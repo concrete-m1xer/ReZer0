@@ -1,0 +1,67 @@
+
+
+every Hunter 
+        can: jump, diy, regen, attack, move, hunt<ultimate>, animate, dash, wallrunning, double
+        have: health, movement speed, attack time, damage, overheat
+
+
+
+
+Ultimate:
+
+    # runner
+    blink
+    hook
+    speedhack
+    jetpack
+    invisibility
+    wormhole
+    ghost (-gravity)
+    forward push trought the wall
+    gravity changer
+
+    # preventer    
+    pull impulse
+    freezer
+    stan
+    black hole
+    push impulse
+    wall cast
+    wallhack (++FOV)
+    
+    # attacers
+    fedor (turret)
+    bomb
+    nuke (oneshot)
+    poison (AOE)
+    trap
+
+    # tanks
+    shields up
+
+
+
+
+
+Arena moments:
+    moving walls
+    platforms moving
+    dead walls in edges
+    traps??
+    
+
+
+
+Actions:
+    damage done/get
+    zones (near enemies or danger)
+
+
+AreaOfEffecter:
+    sphere, inside which everyone takes gamage
+
+Shooter:
+    spawns projectiles, which heads to enemies in sight
+
+Slasher:
+    spawn ray, which hit one enemy in radius
