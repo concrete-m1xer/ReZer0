@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        // slave is pidor's
     }
 
     private void FixedUpdate()
