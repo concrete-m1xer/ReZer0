@@ -14,7 +14,6 @@ namespace Gameplay.Hunters
         [SerializeField] private Joystick _joystick;
         [SerializeField] private float _movementSpeed;
         [SerializeField] private float _jumpForce;
-        [SerializeField] private Transform _groundCheck;
         private Rigidbody2D _rigidbody;
         private bool _isGrounded;
         #endregion
