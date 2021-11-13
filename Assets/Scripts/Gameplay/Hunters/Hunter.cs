@@ -1,27 +1,61 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Gameplay.Hunters
 {
-    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(Attacker))]
     public class Hunter : MonoBehaviour
     {
         #region Constants
         private const float JOYSTICK_DEATH_ZONE = 0.3f;
+        private const float JUMP_FORCE = 14f;
         #endregion
 
         #region Fields
+        [SerializeField] private HunterStats _stats;
         [SerializeField] private Joystick _joystick;
-        [SerializeField] private float _movementSpeed;
-        [SerializeField] private float _jumpForce;
         private Rigidbody2D _rigidbody;
+        private Attacker _attacker;
         private bool _isGrounded;
+
+        private int _currentHealth;
+        private float _movementSpeed;
+        #endregion
+
+        #region Properties
+        public int Health
+        {
+            private get { return _currentHealth; }
+            set
+            {
+                _currentHealth += value;
+                // TODO:
+                // Update UI Health Bar
+                // Play Hit Sound
+                // Show Hit Particle Effects
+
+                if (_currentHealth <= 0)
+                    Dead?.Invoke();
+            }
+        }
+        #endregion
+
+        #region Events
+        public event Action Dead;
         #endregion
 
         #region Unity Methods
         private void Awake()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            _attacker = GetComponent<Attacker>();
+        }
+
+        private void Start()
+        {
+            _attacker.Initialize(_stats.Damage, _stats.AttackCooldown, _stats.ReloadTime, _stats.AttackCount);
+            _currentHealth = _stats.Health;
+            _movementSpeed = _stats.MovementSpeed;
         }
 
         private void FixedUpdate()
@@ -59,7 +93,7 @@ namespace Gameplay.Hunters
         {
             if (_joystick.Vertical >= JOYSTICK_DEATH_ZONE && _isGrounded)
             {
-                _rigidbody.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+                _rigidbody.AddForce(Vector2.up * JUMP_FORCE, ForceMode2D.Impulse);
                 _isGrounded = false;
             }
         }
