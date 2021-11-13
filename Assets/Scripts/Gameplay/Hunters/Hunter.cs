@@ -8,7 +8,7 @@ namespace Gameplay.Hunters
     {
         #region Constants
         private const float JOYSTICK_DEATH_ZONE = 0.3f;
-        private const float JUMP_FORCE = 12.5f;
+        private const float JUMP_FORCE = 14f;
         #endregion
 
         #region Fields
@@ -53,7 +53,7 @@ namespace Gameplay.Hunters
 
         private void Start()
         {
-            _attacker.Initialize(_stats.Damage, _stats.AttackCooldown, _stats.ReloadTime);
+            _attacker.Initialize(_stats.Damage, _stats.AttackCooldown, _stats.ReloadTime, _stats.AttackCount);
             _currentHealth = _stats.Health;
             _movementSpeed = _stats.MovementSpeed;
         }
